@@ -7,15 +7,17 @@ In additional to that, it allow use WinForms and NativeAOT and R2R with trimming
 ## Getting started
 
 Just add `WinFormsComInterop` to your project.
-
-	dotnet add package WinFormsComInterop
+```
+dotnet add package WinFormsComInterop
+```
 
 Then to your Program.cs add following line
-
-	ComWrappers.RegisterForMarshalling(WinFormsComInterop.WinFormsComWrappers.Instance);
+```cs
+ComWrappers.RegisterForMarshalling(WinFormsComInterop.WinFormsComWrappers.Instance);
+```
 
 And modify project file to enable NativeAOT
-```
+```xml
 <PublishAot>true</PublishAot>
 <_SuppressWinFormsTrimError>true</_SuppressWinFormsTrimError>
 ```
@@ -23,8 +25,9 @@ And modify project file to enable NativeAOT
 If you application will works with this ComWrappers implementation, then most likely it would work with NativeAOT.
 
 If you are using WebView2 using `Microsoft.Web.WebView2.Core` package, then use 
-
-	ComWrappers.RegisterForMarshalling(WinFormsComInterop.WebView2.WebView2ComWrapper.Instance);
+```cs
+ComWrappers.RegisterForMarshalling(WinFormsComInterop.WebView2.WebView2ComWrapper.Instance);
+```
 
 Note, that it does not working for *new* WebView2 as of .NET 8, please file and issue if you need it, I'll prioritize.
 
@@ -90,7 +93,7 @@ Mostly notes for me, but maybe somebody would like to hack.
 Build [NativeAOT](https://github.com/dotnet/runtimelab/tree/feature/NativeAOT).
 
 Modify nuget.config
-```
+```xml
 <?xml version="1.0" encoding="utf-8"?>
 <configuration>
   <packageSources>
